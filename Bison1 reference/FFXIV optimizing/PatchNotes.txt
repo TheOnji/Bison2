@@ -1,0 +1,4 @@
+1.01
+- Fixed bug in Direct damage formula
+- Added persistant storage of previously run cases
+- Added function that prints closest stat tier with the show function

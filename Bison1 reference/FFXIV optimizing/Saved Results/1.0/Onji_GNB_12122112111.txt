@@ -1,0 +1,488 @@
+___________________________GCD Tiers___________________________
+GCD:       Estimated DPS: 
+2.34                 4990  <- Lowest 
+2.35                 4997           
+2.36                 4997           
+2.37                 5000           
+2.38                 5002           
+2.39                 5007           
+2.4                  5010           
+2.41                 5012           
+2.42                 5013  <- Highest 
+2.43                 5013           
+2.44                 5012           
+________________________________________________________________
+ 
+__________________________STAT SUMMARY__________________________
+Attributes                         
+Strength:                2516      Intelligence:             233      
+Dexterity:                373      Mind:                     389      
+Vitality:                2744      
+ 
+Offensive Properties               Defensive Properties              
+Critical Hit:            2114      Defense:                 4437      
+Determination:           1433      Magic Defense:           4437      
+Direct Hit Rate:          400      
+ 
+Physical Properties                Mental Properties                 
+Attack Power:            2516      Attack Magic Power:       233      
+Skill Speed:             1309      Healing Magic Power:      389      
+                                   Spell Speed:              400      
+ 
+Gear                               Role                              
+Average Item Level:       600      Tenacity:                 906      
+                                   Piety:                    390      
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+HP:                      85648     GCD:                     2.34      
+DPS:                     4990                                         
+Critical Hit Rate:      23.0 %     Critical Hit Dmg        +58.0 %    
+Direct Hit Rate:         0.0 %     Direct Hit Dmg          +25.0 %    
+CDH Rate:                0.0 %     CDH Dmg                 +97.5 %    
+Food:      Pumpkin Ratatouille                           
+Food stats:            CRT/SKS                                    
+________________________________________________________________
+Gear:                                              Melds:               
+Asphodelos Bayonet                                 ['SKS', 'SKS'] 
+Augmented Radiant's Helm of Fending                ['SKS', 'TEN'] 
+Asphodelos Chiton of Fending                       ['SKS', 'SKS'] 
+Augmented Radiant's Gauntlets of Fending           ['SKS', 'SKS'] 
+Asphodelos Skirt of Fending                        ['CRIT', 'CRIT'] 
+Asphodelos Boots of Fending                        ['SKS', 'TEN'] 
+Asphodelos Earrings of Fending                     ['SKS', 'SKS'] 
+Augmented Radiant's Choker of Fending              ['CRIT', 'SKS'] 
+Augmented Radiant's Bracelet of Fending            ['CRIT', 'SKS'] 
+Augmented Radiant's Ring of Fending                ['CRIT', 'SKS'] 
+Asphodelos Ring of Fending                         ['SKS', 'SKS'] 
+ 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+__________________________STAT SUMMARY__________________________
+Attributes                         
+Strength:                2516      Intelligence:             233      
+Dexterity:                373      Mind:                     389      
+Vitality:                2744      
+ 
+Offensive Properties               Defensive Properties              
+Critical Hit:            2114      Defense:                 4437      
+Determination:           1505      Magic Defense:           4437      
+Direct Hit Rate:          436      
+ 
+Physical Properties                Mental Properties                 
+Attack Power:            2516      Attack Magic Power:       233      
+Skill Speed:             1237      Healing Magic Power:      389      
+                                   Spell Speed:              400      
+ 
+Gear                               Role                              
+Average Item Level:       600      Tenacity:                 870      
+                                   Piety:                    390      
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+HP:                      85648     GCD:                     2.35      
+DPS:                     4997                                         
+Critical Hit Rate:      23.0 %     Critical Hit Dmg        +58.0 %    
+Direct Hit Rate:         1.0 %     Direct Hit Dmg          +25.0 %    
+CDH Rate:               0.23 %     CDH Dmg                 +97.5 %    
+Food:      Pumpkin Ratatouille                           
+Food stats:            CRT/SKS                                    
+________________________________________________________________
+Gear:                                              Melds:               
+Asphodelos Bayonet                                 ['DET', 'DET'] 
+Augmented Radiant's Helm of Fending                ['DH', 'SKS'] 
+Asphodelos Chiton of Fending                       ['SKS', 'SKS'] 
+Augmented Radiant's Gauntlets of Fending           ['SKS', 'SKS'] 
+Asphodelos Skirt of Fending                        ['CRIT', 'CRIT'] 
+Asphodelos Boots of Fending                        ['SKS', 'TEN'] 
+Asphodelos Earrings of Fending                     ['SKS', 'SKS'] 
+Augmented Radiant's Choker of Fending              ['CRIT', 'SKS'] 
+Augmented Radiant's Bracelet of Fending            ['CRIT', 'SKS'] 
+Augmented Radiant's Ring of Fending                ['CRIT', 'SKS'] 
+Asphodelos Ring of Fending                         ['SKS', 'SKS'] 
+ 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+__________________________STAT SUMMARY__________________________
+Attributes                         
+Strength:                2516      Intelligence:             233      
+Dexterity:                373      Mind:                     389      
+Vitality:                2744      
+ 
+Offensive Properties               Defensive Properties              
+Critical Hit:            2150      Defense:                 4437      
+Determination:           1505      Magic Defense:           4437      
+Direct Hit Rate:          436      
+ 
+Physical Properties                Mental Properties                 
+Attack Power:            2516      Attack Magic Power:       233      
+Skill Speed:             1201      Healing Magic Power:      389      
+                                   Spell Speed:              400      
+ 
+Gear                               Role                              
+Average Item Level:       600      Tenacity:                 870      
+                                   Piety:                    390      
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+HP:                      85648     GCD:                     2.36      
+DPS:                     4997                                         
+Critical Hit Rate:      23.4 %     Critical Hit Dmg        +58.4 %    
+Direct Hit Rate:         1.0 %     Direct Hit Dmg          +25.0 %    
+CDH Rate:               0.23 %     CDH Dmg                 +98.0 %    
+Food:      Pumpkin Ratatouille                           
+Food stats:            CRT/SKS                                    
+________________________________________________________________
+Gear:                                              Melds:               
+Asphodelos Bayonet                                 ['DET', 'DET'] 
+Augmented Radiant's Helm of Fending                ['DH', 'SKS'] 
+Asphodelos Chiton of Fending                       ['SKS', 'SKS'] 
+Augmented Radiant's Gauntlets of Fending           ['SKS', 'SKS'] 
+Asphodelos Skirt of Fending                        ['CRIT', 'CRIT'] 
+Asphodelos Boots of Fending                        ['SKS', 'TEN'] 
+Asphodelos Earrings of Fending                     ['SKS', 'SKS'] 
+Augmented Radiant's Choker of Fending              ['CRIT', 'SKS'] 
+Augmented Radiant's Bracelet of Fending            ['CRIT', 'SKS'] 
+Augmented Radiant's Ring of Fending                ['CRIT', 'CRIT'] 
+Asphodelos Ring of Fending                         ['SKS', 'SKS'] 
+ 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+__________________________STAT SUMMARY__________________________
+Attributes                         
+Strength:                2516      Intelligence:             233      
+Dexterity:                373      Mind:                     389      
+Vitality:                2744      
+ 
+Offensive Properties               Defensive Properties              
+Critical Hit:            2150      Defense:                 4437      
+Determination:           1505      Magic Defense:           4437      
+Direct Hit Rate:          472      
+ 
+Physical Properties                Mental Properties                 
+Attack Power:            2516      Attack Magic Power:       233      
+Skill Speed:             1165      Healing Magic Power:      389      
+                                   Spell Speed:              400      
+ 
+Gear                               Role                              
+Average Item Level:       600      Tenacity:                 870      
+                                   Piety:                    390      
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+HP:                      85648     GCD:                     2.37      
+DPS:                     5000                                         
+Critical Hit Rate:      23.4 %     Critical Hit Dmg        +58.4 %    
+Direct Hit Rate:         2.0 %     Direct Hit Dmg          +25.0 %    
+CDH Rate:               0.47 %     CDH Dmg                 +98.0 %    
+Food:      Pumpkin Ratatouille                           
+Food stats:            CRT/SKS                                    
+________________________________________________________________
+Gear:                                              Melds:               
+Asphodelos Bayonet                                 ['DET', 'DET'] 
+Augmented Radiant's Helm of Fending                ['DH', 'DH'] 
+Asphodelos Chiton of Fending                       ['SKS', 'SKS'] 
+Augmented Radiant's Gauntlets of Fending           ['SKS', 'SKS'] 
+Asphodelos Skirt of Fending                        ['CRIT', 'CRIT'] 
+Asphodelos Boots of Fending                        ['SKS', 'TEN'] 
+Asphodelos Earrings of Fending                     ['SKS', 'SKS'] 
+Augmented Radiant's Choker of Fending              ['CRIT', 'SKS'] 
+Augmented Radiant's Bracelet of Fending            ['CRIT', 'SKS'] 
+Augmented Radiant's Ring of Fending                ['CRIT', 'CRIT'] 
+Asphodelos Ring of Fending                         ['SKS', 'SKS'] 
+ 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+__________________________STAT SUMMARY__________________________
+Attributes                         
+Strength:                2516      Intelligence:             233      
+Dexterity:                373      Mind:                     389      
+Vitality:                2744      
+ 
+Offensive Properties               Defensive Properties              
+Critical Hit:            2114      Defense:                 4437      
+Determination:           1505      Magic Defense:           4437      
+Direct Hit Rate:          580      
+ 
+Physical Properties                Mental Properties                 
+Attack Power:            2516      Attack Magic Power:       233      
+Skill Speed:             1093      Healing Magic Power:      389      
+                                   Spell Speed:              400      
+ 
+Gear                               Role                              
+Average Item Level:       600      Tenacity:                 870      
+                                   Piety:                    390      
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+HP:                      85648     GCD:                     2.38      
+DPS:                     5002                                         
+Critical Hit Rate:      23.0 %     Critical Hit Dmg        +58.0 %    
+Direct Hit Rate:         5.2 %     Direct Hit Dmg          +25.0 %    
+CDH Rate:                1.2 %     CDH Dmg                 +97.5 %    
+Food:      Pumpkin Ratatouille                           
+Food stats:            CRT/SKS                                    
+________________________________________________________________
+Gear:                                              Melds:               
+Asphodelos Bayonet                                 ['DET', 'DET'] 
+Augmented Radiant's Helm of Fending                ['DH', 'DH'] 
+Asphodelos Chiton of Fending                       ['DH', 'DH'] 
+Augmented Radiant's Gauntlets of Fending           ['DH', 'SKS'] 
+Asphodelos Skirt of Fending                        ['CRIT', 'CRIT'] 
+Asphodelos Boots of Fending                        ['SKS', 'TEN'] 
+Asphodelos Earrings of Fending                     ['SKS', 'SKS'] 
+Augmented Radiant's Choker of Fending              ['CRIT', 'SKS'] 
+Augmented Radiant's Bracelet of Fending            ['CRIT', 'SKS'] 
+Augmented Radiant's Ring of Fending                ['CRIT', 'SKS'] 
+Asphodelos Ring of Fending                         ['SKS', 'SKS'] 
+ 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+__________________________STAT SUMMARY__________________________
+Attributes                         
+Strength:                2516      Intelligence:             233      
+Dexterity:                373      Mind:                     389      
+Vitality:                2744      
+ 
+Offensive Properties               Defensive Properties              
+Critical Hit:            2150      Defense:                 4437      
+Determination:           1505      Magic Defense:           4437      
+Direct Hit Rate:          652      
+ 
+Physical Properties                Mental Properties                 
+Attack Power:            2516      Attack Magic Power:       233      
+Skill Speed:             1021      Healing Magic Power:      389      
+                                   Spell Speed:              400      
+ 
+Gear                               Role                              
+Average Item Level:       600      Tenacity:                 834      
+                                   Piety:                    390      
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+HP:                      85648     GCD:                     2.39      
+DPS:                     5007                                         
+Critical Hit Rate:      23.4 %     Critical Hit Dmg        +58.4 %    
+Direct Hit Rate:         7.2 %     Direct Hit Dmg          +25.0 %    
+CDH Rate:               1.68 %     CDH Dmg                 +98.0 %    
+Food:      Pumpkin Ratatouille                           
+Food stats:            CRT/SKS                                    
+________________________________________________________________
+Gear:                                              Melds:               
+Asphodelos Bayonet                                 ['DET', 'DET'] 
+Augmented Radiant's Helm of Fending                ['DH', 'DH'] 
+Asphodelos Chiton of Fending                       ['DH', 'DH'] 
+Augmented Radiant's Gauntlets of Fending           ['DH', 'DH'] 
+Asphodelos Skirt of Fending                        ['CRIT', 'CRIT'] 
+Asphodelos Boots of Fending                        ['DH', 'SKS'] 
+Asphodelos Earrings of Fending                     ['SKS', 'SKS'] 
+Augmented Radiant's Choker of Fending              ['CRIT', 'SKS'] 
+Augmented Radiant's Bracelet of Fending            ['CRIT', 'SKS'] 
+Augmented Radiant's Ring of Fending                ['CRIT', 'CRIT'] 
+Asphodelos Ring of Fending                         ['SKS', 'SKS'] 
+ 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+__________________________STAT SUMMARY__________________________
+Attributes                         
+Strength:                2516      Intelligence:             233      
+Dexterity:                373      Mind:                     389      
+Vitality:                2744      
+ 
+Offensive Properties               Defensive Properties              
+Critical Hit:            2150      Defense:                 4437      
+Determination:           1505      Magic Defense:           4437      
+Direct Hit Rate:          688      
+ 
+Physical Properties                Mental Properties                 
+Attack Power:            2516      Attack Magic Power:       233      
+Skill Speed:              985      Healing Magic Power:      389      
+                                   Spell Speed:              400      
+ 
+Gear                               Role                              
+Average Item Level:       600      Tenacity:                 834      
+                                   Piety:                    390      
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+HP:                      85648     GCD:                      2.4      
+DPS:                     5010                                         
+Critical Hit Rate:      23.4 %     Critical Hit Dmg        +58.4 %    
+Direct Hit Rate:         8.3 %     Direct Hit Dmg          +25.0 %    
+CDH Rate:               1.94 %     CDH Dmg                 +98.0 %    
+Food:      Pumpkin Ratatouille                           
+Food stats:            CRT/SKS                                    
+________________________________________________________________
+Gear:                                              Melds:               
+Asphodelos Bayonet                                 ['DET', 'DET'] 
+Augmented Radiant's Helm of Fending                ['DH', 'DH'] 
+Asphodelos Chiton of Fending                       ['DH', 'DH'] 
+Augmented Radiant's Gauntlets of Fending           ['DH', 'DH'] 
+Asphodelos Skirt of Fending                        ['CRIT', 'CRIT'] 
+Asphodelos Boots of Fending                        ['DH', 'DH'] 
+Asphodelos Earrings of Fending                     ['SKS', 'SKS'] 
+Augmented Radiant's Choker of Fending              ['CRIT', 'SKS'] 
+Augmented Radiant's Bracelet of Fending            ['CRIT', 'SKS'] 
+Augmented Radiant's Ring of Fending                ['CRIT', 'CRIT'] 
+Asphodelos Ring of Fending                         ['SKS', 'SKS'] 
+ 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+__________________________STAT SUMMARY__________________________
+Attributes                         
+Strength:                2516      Intelligence:             233      
+Dexterity:                373      Mind:                     389      
+Vitality:                2744      
+ 
+Offensive Properties               Defensive Properties              
+Critical Hit:            2150      Defense:                 4437      
+Determination:           1505      Magic Defense:           4437      
+Direct Hit Rate:          760      
+ 
+Physical Properties                Mental Properties                 
+Attack Power:            2516      Attack Magic Power:       233      
+Skill Speed:              913      Healing Magic Power:      389      
+                                   Spell Speed:              400      
+ 
+Gear                               Role                              
+Average Item Level:       600      Tenacity:                 834      
+                                   Piety:                    390      
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+HP:                      85648     GCD:                     2.41      
+DPS:                     5012                                         
+Critical Hit Rate:      23.4 %     Critical Hit Dmg        +58.4 %    
+Direct Hit Rate:        10.4 %     Direct Hit Dmg          +25.0 %    
+CDH Rate:               2.43 %     CDH Dmg                 +98.0 %    
+Food:      Pumpkin Ratatouille                           
+Food stats:            CRT/SKS                                    
+________________________________________________________________
+Gear:                                              Melds:               
+Asphodelos Bayonet                                 ['DET', 'DET'] 
+Augmented Radiant's Helm of Fending                ['DH', 'DH'] 
+Asphodelos Chiton of Fending                       ['DH', 'DH'] 
+Augmented Radiant's Gauntlets of Fending           ['DH', 'DH'] 
+Asphodelos Skirt of Fending                        ['CRIT', 'CRIT'] 
+Asphodelos Boots of Fending                        ['DH', 'DH'] 
+Asphodelos Earrings of Fending                     ['DH', 'DH'] 
+Augmented Radiant's Choker of Fending              ['CRIT', 'SKS'] 
+Augmented Radiant's Bracelet of Fending            ['CRIT', 'SKS'] 
+Augmented Radiant's Ring of Fending                ['CRIT', 'CRIT'] 
+Asphodelos Ring of Fending                         ['SKS', 'SKS'] 
+ 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+__________________________STAT SUMMARY__________________________
+Attributes                         
+Strength:                2516      Intelligence:             233      
+Dexterity:                373      Mind:                     389      
+Vitality:                2744      
+ 
+Offensive Properties               Defensive Properties              
+Critical Hit:            2150      Defense:                 4437      
+Determination:           1505      Magic Defense:           4437      
+Direct Hit Rate:          832      
+ 
+Physical Properties                Mental Properties                 
+Attack Power:            2516      Attack Magic Power:       233      
+Skill Speed:              841      Healing Magic Power:      389      
+                                   Spell Speed:              400      
+ 
+Gear                               Role                              
+Average Item Level:       600      Tenacity:                 834      
+                                   Piety:                    390      
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+HP:                      85648     GCD:                     2.42      
+DPS:                     5013                                         
+Critical Hit Rate:      23.4 %     Critical Hit Dmg        +58.4 %    
+Direct Hit Rate:        12.5 %     Direct Hit Dmg          +25.0 %    
+CDH Rate:               2.92 %     CDH Dmg                 +98.0 %    
+Food:      Pumpkin Ratatouille                           
+Food stats:            CRT/SKS                                    
+________________________________________________________________
+Gear:                                              Melds:               
+Asphodelos Bayonet                                 ['DET', 'DET'] 
+Augmented Radiant's Helm of Fending                ['DH', 'DH'] 
+Asphodelos Chiton of Fending                       ['DH', 'DH'] 
+Augmented Radiant's Gauntlets of Fending           ['DH', 'DH'] 
+Asphodelos Skirt of Fending                        ['CRIT', 'CRIT'] 
+Asphodelos Boots of Fending                        ['DH', 'DH'] 
+Asphodelos Earrings of Fending                     ['DH', 'DH'] 
+Augmented Radiant's Choker of Fending              ['CRIT', 'DH'] 
+Augmented Radiant's Bracelet of Fending            ['CRIT', 'DH'] 
+Augmented Radiant's Ring of Fending                ['CRIT', 'CRIT'] 
+Asphodelos Ring of Fending                         ['SKS', 'SKS'] 
+ 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+__________________________STAT SUMMARY__________________________
+Attributes                         
+Strength:                2516      Intelligence:             233      
+Dexterity:                373      Mind:                     389      
+Vitality:                2744      
+ 
+Offensive Properties               Defensive Properties              
+Critical Hit:            2150      Defense:                 4437      
+Determination:           1469      Magic Defense:           4437      
+Direct Hit Rate:          940      
+ 
+Physical Properties                Mental Properties                 
+Attack Power:            2516      Attack Magic Power:       233      
+Skill Speed:              769      Healing Magic Power:      389      
+                                   Spell Speed:              400      
+ 
+Gear                               Role                              
+Average Item Level:       600      Tenacity:                 834      
+                                   Piety:                    390      
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+HP:                      85648     GCD:                     2.43      
+DPS:                     5013                                         
+Critical Hit Rate:      23.4 %     Critical Hit Dmg        +58.4 %    
+Direct Hit Rate:        15.6 %     Direct Hit Dmg          +25.0 %    
+CDH Rate:               3.65 %     CDH Dmg                 +98.0 %    
+Food:      Pumpkin Ratatouille                           
+Food stats:            CRT/SKS                                    
+________________________________________________________________
+Gear:                                              Melds:               
+Asphodelos Bayonet                                 ['DET', 'DH'] 
+Augmented Radiant's Helm of Fending                ['DH', 'DH'] 
+Asphodelos Chiton of Fending                       ['DH', 'DH'] 
+Augmented Radiant's Gauntlets of Fending           ['DH', 'DH'] 
+Asphodelos Skirt of Fending                        ['CRIT', 'CRIT'] 
+Asphodelos Boots of Fending                        ['DH', 'DH'] 
+Asphodelos Earrings of Fending                     ['DH', 'DH'] 
+Augmented Radiant's Choker of Fending              ['CRIT', 'DH'] 
+Augmented Radiant's Bracelet of Fending            ['CRIT', 'DH'] 
+Augmented Radiant's Ring of Fending                ['CRIT', 'CRIT'] 
+Asphodelos Ring of Fending                         ['DH', 'DH'] 
+ 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+__________________________STAT SUMMARY__________________________
+Attributes                         
+Strength:                2516      Intelligence:             233      
+Dexterity:                373      Mind:                     389      
+Vitality:                2744      
+ 
+Offensive Properties               Defensive Properties              
+Critical Hit:            2006      Defense:                 4437      
+Determination:           1559      Magic Defense:           4437      
+Direct Hit Rate:         1012      
+ 
+Physical Properties                Mental Properties                 
+Attack Power:            2516      Attack Magic Power:       233      
+Skill Speed:              751      Healing Magic Power:      389      
+                                   Spell Speed:              400      
+ 
+Gear                               Role                              
+Average Item Level:       600      Tenacity:                 834      
+                                   Piety:                    390      
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+HP:                      85648     GCD:                     2.44      
+DPS:                     5012                                         
+Critical Hit Rate:      21.9 %     Critical Hit Dmg        +56.9 %    
+Direct Hit Rate:        17.7 %     Direct Hit Dmg          +25.0 %    
+CDH Rate:               3.88 %     CDH Dmg                 +96.1 %    
+Food:           Pumpkin Potage                           
+Food stats:           DET/CRIT                                    
+________________________________________________________________
+Gear:                                              Melds:               
+Asphodelos Bayonet                                 ['DET', 'DH'] 
+Augmented Radiant's Helm of Fending                ['DH', 'DH'] 
+Asphodelos Chiton of Fending                       ['DH', 'DH'] 
+Augmented Radiant's Gauntlets of Fending           ['DH', 'DH'] 
+Asphodelos Skirt of Fending                        ['CRIT', 'CRIT'] 
+Asphodelos Boots of Fending                        ['DH', 'DH'] 
+Asphodelos Earrings of Fending                     ['DH', 'DH'] 
+Augmented Radiant's Choker of Fending              ['CRIT', 'DH'] 
+Augmented Radiant's Bracelet of Fending            ['DH', 'SKS'] 
+Augmented Radiant's Ring of Fending                ['DH', 'DH'] 
+Asphodelos Ring of Fending                         ['DH', 'DH'] 
+ 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
