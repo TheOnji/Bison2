@@ -1,12 +1,106 @@
-import math
-import itertools
+import numpy as np
 
 def Main():
-    Geartest = Gearset_Fending(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
-    Geartest.Gearslot.show()
+    ID = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    Geartest = Fending_gear()
+    Geartest(ID)
+    print(Geartest.ID)
 
-    for k in Geartest.AllowedMelds:
-        print(k)
+class Gear_base():
+    def __init__(self):
+        self.Materia_Matrix = np.zeros([7, 7])
+        self.ID = None
+        self.slots = {'Weapon':None,
+                    'Head':None,
+                    'Chest':None,
+                    'Hands':None,
+                    'Legs':None,
+                    'Feet':None,
+                    'Ear':None,
+                    'Neck':None,
+                    'Braclet':None,
+                    'Ring1':None,
+                    'Ring2':None}
+
+    def __call__(self, Gear_ID):
+        assert len(Gear_ID) == 12, 'Gear ID must be a list with length 12'
+        self.ID = Gear_ID
+
+class Fending_gear(Gear_base):
+    def __init__(self):
+        super().__init__()
+
+
+class Healing_gear(Gear_base):
+    pass
+
+class Striking_gear(Gear_base):
+    pass
+
+class Maiming_gear(Gear_base):
+    pass
+
+class Aiming_gear(Gear_base):
+    pass
+
+class Casting_gear(Gear_base):
+    pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 class Gearslot():
