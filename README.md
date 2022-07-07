@@ -18,7 +18,13 @@ Things to do:
 
 - Add unit testing for modules
 
+Grand idea
+Instead of generating all possible materia combinations and check each and
+every one of them. Why not generate only the allowed materia combinations
+directly. This can be done by backtracking from the materia matrix of
+each gearset.
 
 
 
-
+Finished optimization
+- Callable Food object
