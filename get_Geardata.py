@@ -27,9 +27,6 @@ Gear_urls = {'Head':f"https://na.finalfantasyxiv.com/lodestone/playguide/db/item
 with open('Gear_urls.json', 'w') as file:
 	json.dump(Gear_urls, file)
 
-
-input('paused...')
-
 url_base = "https://na.finalfantasyxiv.com"
 
 with open('url_base.json', 'w') as file:
@@ -76,8 +73,7 @@ for key, val in tqdm(Links.items()):
 	
 	database.update({key:data})
 
-for key, val in database.items():
-	print(f"{key:<50}:{val}")
-
 with open('database.json', 'w') as file:
 	json.dump(database, file)
+
+print('Update completed, json files updated!')
