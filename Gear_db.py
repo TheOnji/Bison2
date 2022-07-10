@@ -1,12 +1,58 @@
 import numpy as np
+from All_Gear import *
+
+"""
+Module conceptualization:
+
+Storage and setup
+
+A = Database variable with all gear data
+
+Job + type -> class B:
+
+Class B grabs and stores all relevant gear (new gear added to A will be automatically grabbed by class B)
+
+Runtime
+
+B(ID) lifts the corresponding summarized data from the loaded set of gear
+
+
+"""
+
 
 def Main():
-    ID = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-    Geartest = Fending_gear()
-    Geartest(ID)
-    print(Geartest.ID)
+    ID = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    #Geartest = Fending_gear()
+    #Geartest(ID)
+    #print(Geartest.ID)
+
 
 class Gear_base():
+    def __init__(self):
+        self.Strength = 0
+        self.Dexterity = 0
+        self.Vitality = 0
+        self.Intelligence = 0
+        self.Mind = 0
+        self.CriticalHit = 0
+        self.Determination = 0
+        self.DirectHitRate = 0
+        self.Defense = 0
+        self.MagicDefense = 0
+        self.AttackPower = 0
+        self.SkillSpeed = 0
+
+    def __add__(self, other):
+        rv1 = self.__dict__.copy()
+        for key in other.__dict__.keys():
+            rv1.update({key:self.__dict__.get(key, 0) + other.__dict__.get(key, 0)})
+        return rv
+
+
+
+
+
+class Gearset_base():
     def __init__(self):
         self.Materia_Matrix = np.zeros([7, 7])
         self.ID = None
@@ -21,29 +67,71 @@ class Gear_base():
                     'Braclet':None,
                     'Ring1':None,
                     'Ring2':None}
+        self.options = self.slots.copy()
 
     def __call__(self, Gear_ID):
-        assert len(Gear_ID) == 12, 'Gear ID must be a list with length 12'
+        assert len(Gear_ID) == 11, 'Gear ID must be a list of length 11'
         self.ID = Gear_ID
 
-class Fending_gear(Gear_base):
-    def __init__(self):
+        for key, ID in zip(self.slots.keys(), Gear_ID):
+            self.slots.update({key:self.options[key][ID].name})
+
+
+
+
+
+class Fending_gear(Gearset_base):
+    Job_specific = {'WAR':[Asphodelos_WAR_Weapon()],
+                    'PLD':[Asphodelos_PLD_Weapon()],
+                    'DRK':[Asphodelos_DRK_Weapon()],
+                    'GNB':[Asphodelos_GNB_Weapon()]}
+
+    def __init__(self, Job):
         super().__init__()
 
+        self.options = {'Weapon':self.Job_specific[Job],
+                        'Head':[Asphodelos_Head_Fending(), Radiants_Head_Fending()],
+                        'Chest':[Asphodelos_Chest_Fending(), Radiants_Chest_Fending()],
+                        'Hands':[Asphodelos_Hands_Fending(), Radiants_Hands_Fending()],
+                        'Legs':[Asphodelos_Legs_Fending(), Radiants_Legs_Fending()],
+                        'Feet':[Asphodelos_Feet_Fending(), Radiants_Legs_Fending()],
+                        'Ear':[Asphodelos_Ear_Fending(), Radiants_Ear_Fending()],
+                        'Neck':[Asphodelos_Neck_Fending(), Radiants_Neck_Fending()],
+                        'Bracelet':[Asphodelos_Bracelet_Fending(), Radiants_Neck_Fending()],
+                        'Ring1':[Asphodelos_Ring_Fending(), Radiants_Ring_Fending()],
+                        'Ring2':[Ashodelos_Ring_Fending(), Radiants_Ring_Fending()]}
 
-class Healing_gear(Gear_base):
+class Healing_gear(Gearset_base):
+    Job_specific = {'WHM':[Asphodelos_WAR_Weapon()],
+                    'AST':[Asphodelos_PLD_Weapon()],
+                    'SCH':[Asphodelos_DRK_Weapon()],
+                    'SGE':[Asphodelos_GNB_Weapon()]}
+
+    def __init__(self, Job):
+        super().__init__()
+
+        self.options = {'Weapon':self.Job_specific[Job],
+                        'Head':[Asphodelos_Head_Fending(), Radiants_Head_Fending()],
+                        'Chest':[Asphodelos_Chest_Fending(), Radiants_Chest_Fending()],
+                        'Hands':[Asphodelos_Hands_Fending(), Radiants_Hands_Fending()],
+                        'Legs':[Asphodelos_Legs_Fending(), Radiants_Legs_Fending()],
+                        'Feet':[Asphodelos_Feet_Fending(), Radiants_Legs_Fending()],
+                        'Ear':[Asphodelos_Ear_Fending(), Radiants_Ear_Fending()],
+                        'Neck':[Asphodelos_Neck_Fending(), Radiants_Neck_Fending()],
+                        'Bracelet':[Asphodelos_Bracelet_Fending(), Radiants_Neck_Fending()],
+                        'Ring1':[Asphodelos_Ring_Fending(), Radiants_Ring_Fending()],
+                        'Ring2':[Ashodelos_Ring_Fending(), Radiants_Ring_Fending()]}
+
+class Striking_gear(Gearset_base):
     pass
 
-class Striking_gear(Gear_base):
+class Maiming_gear(Gearset_base):
     pass
 
-class Maiming_gear(Gear_base):
+class Aiming_gear(Gearset_base):
     pass
 
-class Aiming_gear(Gear_base):
-    pass
-
-class Casting_gear(Gear_base):
+class Casting_gear(Gearset_base):
     pass
 
 
@@ -102,29 +190,21 @@ class Casting_gear(Gear_base):
 
 
 
-
-class Gearslot():
-    def __init__(self):
-        self.Weapon = None
-        self.Head = None
-        self.Chest = None
-        self.Hands = None
-        self.Legs = None
-        self.Feet = None
-        self.Ear = None
-        self.Neck = None
-        self.Bracelet = None
-        self.Ring1 = None
-        self.Ring2 = None
-
-    def show(self):
-        for k in self.__dict__:
-            exec(f"print(self.{k})")
 
 class Gearset_Fending():
 
-    def __init__(self, Job, Weapon, Head, Chest, Hands, Legs, Feet, Ear, Neck, Bracelet, Ring1, Ring2):
-        self.Gearslot = Gearslot()
+    def __init__(self, Job):
+        self.Gearslot = {'Weapon':None,
+                        'Head':None,
+                        'Chest':None,
+                        'Hands':None,
+                        'Legs':None,
+                        'Feet':None,
+                        'Ear':None,
+                        'Neck':None,
+                        'Braclet':None,
+                        'Ring1':None,
+                        'Ring2':None}
 
         self.TotalMelds = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         self.AllowedMelds = [{'CRIT':0, 'DET':0, 'DH':0, 'SKS':0, 'SPS':0, 'TEN':0, 'PIE':0},
@@ -139,19 +219,7 @@ class Gearset_Fending():
                             {'CRIT':0, 'DET':0, 'DH':0, 'SKS':0, 'SPS':0, 'TEN':0, 'PIE':0},
                             {'CRIT':0, 'DET':0, 'DH':0, 'SKS':0, 'SPS':0, 'TEN':0, 'PIE':0}]
 
-        self.Affinity = [{'CRIT':0, 'DET':0, 'DH':0, 'SKS':0, 'SPS':0, 'TEN':0, 'PIE':0},
-                            {'CRIT':0, 'DET':0, 'DH':0, 'SKS':0, 'SPS':0, 'TEN':0, 'PIE':0},
-                            {'CRIT':0, 'DET':0, 'DH':0, 'SKS':0, 'SPS':0, 'TEN':0, 'PIE':0},
-                            {'CRIT':0, 'DET':0, 'DH':0, 'SKS':0, 'SPS':0, 'TEN':0, 'PIE':0},
-                            {'CRIT':0, 'DET':0, 'DH':0, 'SKS':0, 'SPS':0, 'TEN':0, 'PIE':0},
-                            {'CRIT':0, 'DET':0, 'DH':0, 'SKS':0, 'SPS':0, 'TEN':0, 'PIE':0},
-                            {'CRIT':0, 'DET':0, 'DH':0, 'SKS':0, 'SPS':0, 'TEN':0, 'PIE':0},
-                            {'CRIT':0, 'DET':0, 'DH':0, 'SKS':0, 'SPS':0, 'TEN':0, 'PIE':0},
-                            {'CRIT':0, 'DET':0, 'DH':0, 'SKS':0, 'SPS':0, 'TEN':0, 'PIE':0},
-                            {'CRIT':0, 'DET':0, 'DH':0, 'SKS':0, 'SPS':0, 'TEN':0, 'PIE':0},
-                            {'CRIT':0, 'DET':0, 'DH':0, 'SKS':0, 'SPS':0, 'TEN':0, 'PIE':0}]
-
-
+        self.Job = Job
         self.Strength = 0
         self.Dexterity = 0
         self.Vitality = 0
@@ -174,8 +242,12 @@ class Gearset_Fending():
         self.AutoAttack = 0
         self.Delay = 0
 
-        match Job:
+    def __call__(self, Gear_ID):
+        assert len(Gear_ID) == 11, "Gear_ID must be a list with 11 elements!"
+        self.__init__(self.Job)
+        Weapon, Head, Chest, Hands, Legs, Feet, Ear, Neck, Bracelet, Ring1, Ring2 = Gear_ID
 
+        match self.Job:
             case 'CUSTOM':
                 match Weapon:
                     case 1:
@@ -316,7 +388,6 @@ class Gearset_Fending():
                         self.PhysicalDamage = 120
                         self.AutoAttack = 112.00
                         self.Delay = 2.80
-
 
         match Head:
             case 3:
