@@ -1,5 +1,24 @@
 import numpy as np
 import json
+import logging
+
+#---------------Logger setup----------------#
+logger = logging.getLogger(__name__)
+
+#Levels
+#NOTSET, DEBUG, INFO, WARNING, ERROR, CRITICAL
+logger.setLevel(logging.INFO)
+
+file_handler = logging.FileHandler(f"{__name__}.log")
+formatter = logging.Formatter('%(levelname)s:%(name)s:%(message)s')
+file_handler.setFormatter(formatter)
+stream_handler = logging.StreamHandler()
+stream_handler.setFormatter(formatter)
+
+logger.addHandler(file_handler)
+logger.addHandler(stream_handler)
+
+#-----------Logger setup finished------------#
 
 def Main():
     Gear_set = Gearset('GNB')
@@ -8,6 +27,9 @@ def Main():
 
     Gear_set(Gear_ID)
     Gear_set.show_stats()
+
+    Materia = [5, 5, 5, 5, 0, 2, 0]
+    print(Materia, Gear_set.Test_Materia(Materia))
 
 
 class Gearset():
@@ -77,9 +99,9 @@ class Gearset():
         info.pop('database')
         info.pop('JobGear')
 
-        print('Allowed Materia')
+        logger.debug('Allowed Materia')
         for i in info.pop('AllowedMateria'):
-            print(i)
+            logger.debug(i)
 
 
         for key, val in info.items():
@@ -130,7 +152,8 @@ class Gearset():
                     np.fill_diagonal(Materia_Matrix, b)
                     Materia_Matrix.clip(0, val['Materia_Sockets'])
 
-                    print(Materia_Matrix)
+                    logger.debug(Materia_Matrix)
+
                     Entry.update({'Materia_Matrix':Materia_Matrix})
 
 
@@ -148,7 +171,39 @@ class Gearset():
             for subkey, subval in val.items():
                 print(f"    {subkey}: {subval['Name']}")
 
+    def Test_Materia(self, MatList):
 
+        logger.debug('Materia_Matrix')
+        logger.debug(self.Materia_Matrix)
+        logger.debug(f"Materia_sockets: {self.Materia_Sockets:}, Given nr of Materia: {sum(MatList)}")
+        Possible = False
+
+        #Test 1 are all the slots filled?
+        if sum(MatList) == self.Materia_Sockets:
+            A = np.ones([7,7])
+            bA = MatList*A
+            Test_Matrix = (bA + np.transpose(bA))
+            np.fill_diagonal(Test_Matrix, MatList)
+
+            logger.debug('Test_Matrix')
+            logger.debug(Test_Matrix)
+
+            T = self.Materia_Matrix - Test_Matrix
+            T_bool = T[:, None] < 0
+
+            logger.debug('Diff Matrices and any call')    
+            logger.debug(T)
+            logger.debug(T[:,None] < 0)
+
+            if not T_bool.any():
+                Possible = True
+                logger.debug('Materia set allowed')
+            else:
+                logger.debug('Materia set failed matrix test')
+        else:
+            logger.debug('Materia set failed sum test')        
+
+        return Possible    
 
 if __name__ == "__main__":
     Main()
