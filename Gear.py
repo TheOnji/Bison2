@@ -20,7 +20,7 @@ logger.addHandler(stream_handler)
 
 #-----------Logger setup finished------------#
 
-def Main():
+def main():
     Gear_set = Gearset('GNB')
     Gear_ID = [2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     #Gear_set.show_JobGear()
@@ -206,4 +206,4 @@ class Gearset():
         return Possible    
 
 if __name__ == "__main__":
-    Main()
+    main()

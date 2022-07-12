@@ -1,5 +1,5 @@
 
-class Food_data():
+class Menu():
     def __init__(self):
         self.options = []
         self.options.append({'Name':'Archon Burger',
