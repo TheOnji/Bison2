@@ -5,19 +5,23 @@ import logging
 #---------------Logger setup----------------#
 logger = logging.getLogger(__name__)
 
-#Levels
-#NOTSET, DEBUG, INFO, WARNING, ERROR, CRITICAL
-logger.setLevel(logging.INFO)
-
-file_handler = logging.FileHandler(f"{__name__}.log")
+file_handler = logging.FileHandler(f"Bison2.log")
 formatter = logging.Formatter('%(levelname)s:%(name)s:%(message)s')
 file_handler.setFormatter(formatter)
 stream_handler = logging.StreamHandler()
 stream_handler.setFormatter(formatter)
 
+#Levels
+#NOTSET, DEBUG, INFO, WARNING, ERROR, CRITICAL
+logger.setLevel(logging.DEBUG)
+file_handler.setLevel(logging.ERROR)
+stream_handler.setLevel(logging.DEBUG)
+
 logger.addHandler(file_handler)
 logger.addHandler(stream_handler)
 
+#Disable all logging
+#logging.disable(logging.CRITICAL)
 #-----------Logger setup finished------------#
 
 def main():
