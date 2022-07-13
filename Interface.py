@@ -5,6 +5,7 @@ import logging
 
 import main
 from Interface_options import *
+import Gear
 
 #---------------Logger setup----------------#
 logger = logging.getLogger(__name__)
@@ -47,6 +48,8 @@ def UpdateInterface():
         Job_type = st.selectbox('Select job type', ['Tank','Healer','DPS'])
         Job = st.selectbox('Select job', Job_options[Job_type])
 
+        _Update = st.button('Update database')
+
         st.text('Created by: Onji')
 
     #---Page setup---
@@ -54,29 +57,130 @@ def UpdateInterface():
     st.text('---Advanced FFXIV best-in-slot optimizer---')
     st.info('How to use: \n 1. Configure race and job in the sidepanel. \n 2. Configure which gear and materia to analyze. \n 3. Select GCD range of interest. \n 4. Launch BiSON with the Optimize button. \n Less gear and materia options gives faster processing time.')
 
+    #Load Gear object for selected job
+    Gear_Set = Gear.Gearset(Job)
+    Gear_Choice = {}
+
     with st.container():
-        st.header('Gear pieces to test')
         c1, c2 = st.columns(2)
-        Gear_type = Job_Gear[Job]
-        Gear_options = All_gear_options[Gear_type]
-        Gear = {}
+
+        with c1:
+            st.subheader('Mainhand')
+            Gear_Choice.update({'Weapon':[], 
+                                'Shield':[],
+                                'Head':[],
+                                'Body':[],
+                                'Hands':[],
+                                'Legs':[],
+                                'Feet':[],
+                                'Earrings':[],
+                                'Necklace':[],
+                                'Bracelets':[],
+                                'Ring1':[],
+                                'Ring2':[]})
+
+            for key, val in Gear_Set.JobGear.items():
+                for subkey, subval in val.items():
+                    if 'Weapon' in key:
+                        g1 = st.checkbox(subval['Name'])
+
+                        #If gear is ticked update config file for BISON
+                        if g1:
+                            Gear_Choice[key] += [subkey]
+
+        with c2:
+            st.subheader('Offhand')
+            for key, val in Gear_Set.JobGear.items():
+                for subkey, subval in val.items():
+                    if 'Shield' in key:
+                        g1 = st.checkbox(subval['Name'])
+
+                        #If gear is ticked update config file for BISON
+                        if g1:
+                            Gear_Choice[key] += [subkey]
+
+
+    with st.container():
+        c1, c2 = st.columns(2)
+        
         with c1:
             st.header('Body')
+            k1 = st.container()
+            k2 = st.container()
+            k3 = st.container()
+            k4 = st.container()
+            k5 = st.container()
+            section = {'Head':k1, 'Body':k2, 'Hands':k3, 'Legs':k4, 'Feet':k5}
 
-            for key in ['Head', 'Chest', 'Hands', 'Legs', 'Feet']:
-                st.subheader(key)
-                g1 = st.checkbox(Gear_options[key][0])
-                g2 = st.checkbox(Gear_options[key][1])
-                Gear.update({key:[g1, g2]})
+            for key, val in section.items():
+                with val:
+                    st.subheader(key)
+
+            for key, val in Gear_Set.JobGear.items():
+                for subkey, subval in val.items():
+                    if key in section:
+                        with section[key]:
+                            g1 = st.checkbox(subval['Name'])
+                            #If gear is ticked update config file for BISON
+                            if g1:
+                                Gear_Choice[key] += [subkey]
 
         with c2:
             st.header('Accessories')
+            k1 = st.container()
+            k2 = st.container()
+            k3 = st.container()
+            k4 = st.container()
+            k5 = st.container()
+            section = {'Earrings':k1, 'Necklace':k2, 'Bracelets':k3, 'Ring1':k4, 'Ring2':k5}
 
-            for key in ['Ear', 'Neck', 'Braclet', 'Ring1', 'Ring2']:
-                st.subheader(key)
-                g1 = st.checkbox(Gear_options[key][0])
-                g2 = st.checkbox(Gear_options[key][1])
-                Gear.update({key:[g1, g2]})
+            for key, val in section.items():
+                with val:
+                    st.subheader(key)
+
+            for key, val in Gear_Set.JobGear.items():
+                for subkey, subval in val.items():
+
+                    if key in section:
+                        with section[key]:
+                            g1 = st.checkbox(subval['Name'])
+                            
+                            #If gear is ticked update config file for BISON
+                            if g1:
+                                Gear_Choice[key] += [subkey]
+
+                    if key == 'Ring':
+                        for temp_key, addstr in zip(['Ring1', 'Ring2'], ['', ' ']):
+                            with section[temp_key]:
+                                g1 = st.checkbox(subval['Name'] + addstr)
+                                
+                                #If gear is ticked update config file for BISON
+                                if g1:
+                                    Gear_Choice[temp_key] += [subkey]
+
+#Old
+#        st.header('Gear pieces to test')
+#        c1, c2 = st.columns(2)
+#        Gear_type = Job_Gear[Job]
+#        Gear_options = All_gear_options[Gear_type]
+#        Gear = {}
+#        with c1:
+#            st.header('Body')
+#
+#            for key in ['Head', 'Chest', 'Hands', 'Legs', 'Feet']:
+#                st.subheader(key)
+#                g1 = st.checkbox(Gear_options[key][0])
+#                g2 = st.checkbox(Gear_options[key][1])
+#                Gear.update({key:[g1, g2]})
+#
+#        with c2:
+#            st.header('Accessories')
+#
+#            for key in ['Ear', 'Neck', 'Braclet', 'Ring1', 'Ring2']:
+#                st.subheader(key)
+#                g1 = st.checkbox(Gear_options[key][0])
+#                g2 = st.checkbox(Gear_options[key][1])
+#                Gear.update({key:[g1, g2]})
 
     c1, c2 = st.columns([1, 1])
 
@@ -96,30 +200,26 @@ def UpdateInterface():
         GCD_min = st.number_input('From', 1.50, 2.50, value = 2.40)
         GCD_max = st.number_input('To', 1.50, 2.50, value = 2.50)
 
-    Optimize_pressed = st.button('Optimize!')
+    _Optimize = st.button('Optimize!')
 
     #Apply css style
     with open('style.css') as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html = True)
+        
+    #Create loading area container
+    Load_area = st.container()
+
+    #Collect data for BISON in dictionary
+    BISON_config = {'Race':[Race_type, Race],
+                    'Job':[Job_type, Job],
+                    'Materia':{'CRT':CRT,'DET':DET,'DH': DH, 'SKS':SKS,'SPS':SPS,'TEN': TEN,'PIE':PIE},
+                    'GCD':{'GCD_min':GCD_min, 'GCD_max':GCD_max},
+                    'Gear':Gear_Choice}
+
+    flags = {'Update': _Update,
+            'Optimize':_Optimize}
 
 
-    if Optimize_pressed:
-        st.markdown("""---""") 
-        st.text(logo2)
-        st.text('Processing...')
-        testbar = st.progress(0)
-        for i in range(101):
-            testbar.progress(i)
-            time.sleep(0.01)
-
-        #Collect data for BISON in dictionary
-        BISON_config = {'Race':[Race_type, Race],
-                        'Job':[Job_type, Job],
-                        'Materia':{'CRT':CRT,'DET':DET,'DH': DH, 'SKS':SKS,'SPS':SPS,'TEN': TEN,'PIE':PIE},
-                        'GCD':{'GCD_min':GCD_min, 'GCD_max':GCD_max},
-                        'Gear':Gear}
-
-
-    return 'flags and config'
+    return BISON_config, flags, Load_area
 
 

@@ -13,9 +13,9 @@ stream_handler.setFormatter(formatter)
 
 #Levels
 #NOTSET, DEBUG, INFO, WARNING, ERROR, CRITICAL
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 file_handler.setLevel(logging.ERROR)
-stream_handler.setLevel(logging.DEBUG)
+stream_handler.setLevel(logging.INFO)
 
 logger.addHandler(file_handler)
 logger.addHandler(stream_handler)
