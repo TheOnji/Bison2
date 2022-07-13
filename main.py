@@ -51,7 +51,7 @@ def main():
         BISON(BISON_config, Load_area)
 
 
-def BISON(config, Load_area):
+def BISON_DEMO(config, Load_area):
     print('Bison main')
 
     i = (i for i in np.linspace(0, 100, len(config)))
@@ -66,6 +66,12 @@ def BISON(config, Load_area):
         with Load_area:
             testbar.progress(int(next(i)))
             time.sleep(0.5)
+
+def BISON(config, Load_area):
+    print(config)
+
+    GearSet = Gear.GearSet(config['Job'])
+    Menu = Food.FoodMenu()
 
 
 if __name__ == '__main__':

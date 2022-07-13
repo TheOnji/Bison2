@@ -30,7 +30,7 @@ def main():
     #Gear_set.show_JobGear()
 
     Gear_set(Gear_ID)
-    Gear_set.show_stats()
+    print(Gear_set)
 
     Materia = [5, 5, 5, 5, 0, 2, 0]
     print(Materia, Gear_set.Test_Materia(Materia))
@@ -39,8 +39,24 @@ def main():
 class Gearset():
 
     def __init__(self, Job):
-        self.AllowedMateria = [{},{},{},{},{},{},{},{},{},{},{}]
-        self.Materia_Matrix = np.zeros([7, 7])
+        self.null = {'Materia_Matrix':np.zeros([7, 7]),
+                    'AllowedMateria':[{},{},{},{},{},{},{},{},{},{},{}],
+                    'Materia_Sockets':0,
+                    'iLVL':0,
+                    'Strength':0,
+                    'Intelligence':0,
+                    'Mind':0,
+                    'Dexterity':0,
+                    'Vitality':0,
+                    'Critical Hit':0,
+                    'Determination':0,
+                    'Direct Hit Rate':0,
+                    'Skill Speed':0,
+                    'Spell Speed':0,
+                    'Tenacity':0,
+                    'Piety':0}
+
+        self.reset()
         self.ID = None
         self.slots = {'Weapon':None,
                     'Head':None,
@@ -52,7 +68,7 @@ class Gearset():
                     'Necklace':None,
                     'Bracelets':None,
                     'Ring1':None,
-                    'Ring2':None}
+                    'Ring2':None}        
 
         self.JobGear = self.slots.copy()
 
@@ -60,6 +76,9 @@ class Gearset():
             self.database = json.load(file)
 
         self.get_JobGear(Job)
+
+    def reset(self):
+        self.__dict__.update(self.null)
 
     def __call__(self, Gear_ID):
         Weapon, Head, Chest, Hands, Legs, Feet, Ear, Neck, Bracelet, Ring1, Ring2 = Gear_ID
@@ -77,8 +96,8 @@ class Gearset():
                 'Ring1':Ring1,
                 'Ring2':Ring2}
 
-        i = 0
-        for Slot, ID in Choice.items():
+        self.reset()
+        for i, (Slot, ID) in enumerate(Choice.items()):
             SaveSlot = Slot
             if 'Ring' in Slot:
                 Slot = 'Ring'
@@ -86,22 +105,22 @@ class Gearset():
             item = self.JobGear[Slot][ID].copy()
             self.slots[SaveSlot] = item.pop('Name')
             self.AllowedMateria[i].update(item.pop('AllowedMateria'))
-            i += 1
 
             for stat, val in item.items():
                 setattr(self, stat, self.__dict__.get(stat, 0) + val)
 
         self.iLVL = int(self.iLVL / 11)
                     
-    def show_stats(self):
+    def __repr__(self):
         for key, val in self.slots.items():
             print(f"{key:>10}:{val}")
 
         print('---Gearset Stats---')
-        info = self.__dict__
+        info = self.__dict__.copy()
         info.pop('slots')
         info.pop('database')
         info.pop('JobGear')
+        info.pop('null')
 
         logger.debug('Allowed Materia')
         for i in info.pop('AllowedMateria'):
@@ -110,6 +129,8 @@ class Gearset():
 
         for key, val in info.items():
             print(f"{key:15}: {val}")
+
+        return ''
 
     def get_JobGear(self, Job):
         JobGear = {}

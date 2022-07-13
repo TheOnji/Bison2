@@ -1,4 +1,5 @@
 import logging
+import json
 
 #---------------Logger setup----------------#
 logger = logging.getLogger(__name__)
@@ -23,96 +24,54 @@ logger.addHandler(stream_handler)
 #-----------Logger setup finished------------#
 
 
-class Menu():
-    def __init__(self):
-        self.options = []
-        self.options.append({'Name':'Archon Burger',
-                            'Stats':'DH/DET',
-                            'CRT': 0,
-                            'DET': 54,
-                            'DH': 90,
-                            'SKS': 0,
-                            'SPS': 0,
-                            'TEN': 0,
-                            'PIE': 0,
-                            'VIT': 93,
-                            'Percent': 0.08})
+def main():
+    Menu = FoodMenu(1)
+    Menu
 
-        self.options.append({'Name':'Beef Stroganoff',
-                            'Stats':'SKS/DH',
-                            'CRT': 0,
-                            'DET': 0,
-                            'DH': 54,
-                            'SKS': 90,
-                            'SPS': 0,
-                            'TEN': 0,
-                            'PIE': 0,
-                            'VIT': 93,
-                            'Percent': 0.08})
 
-        self.options.append({'Name':'Pumpkin Ratatouille',
-                            'Stats':'CRT/SKS',
-                            'CRT': 90,
-                            'DET': 0,
-                            'DH': 0,
-                            'SKS': 54,
-                            'SPS': 0,
-                            'TEN': 0,
-                            'PIE': 0,
-                            'VIT': 93,
-                            'Percent': 0.08})
+class FoodMenu():
+    def __init__(self, Food_ID = 1):
+        with open('Food_database.json') as file:
+            self.database = json.load(file)
 
-        self.options.append({'Name':'Pumpkin Potage',
-                            'Stats':'DET/CRT',
-                            'CRT': 54,
-                            'DET': 90,
-                            'DH': 0,
-                            'SKS': 0,
-                            'SPS': 0,
-                            'TEN': 0,
-                            'PIE': 0,
-                            'VIT': 93,
-                            'Percent': 0.08})
+        self.null = {'Critical Hit': 0,
+                    'Determination': 0,
+                    'Direct Hit Rate': 0,
+                    'Skill Speed': 0,
+                    'Spell Speed': 0,
+                    'Tenacity': 0,
+                    'Piety': 0,
+                    'Vitality': 0}
 
-        self.options.append({'Name':'Scallop Salad',
-                            'Stats':'TEN/DET',
-                            'CRT': 0,
-                            'DET': 54,
-                            'DH': 0,
-                            'SKS': 0,
-                            'SPS': 0,
-                            'TEN': 90,
-                            'PIE': 0,
-                            'VIT': 93,
-                            'Percent': 0.08})
+        self.choices = {}
 
-        self.options.append({'Name':'Scallop Curry',
-                            'Stats':'DET/TEN',
-                            'CRT': 0,
-                            'DET': 90,
-                            'DH': 0,
-                            'SKS': 0,
-                            'SPS': 0,
-                            'TEN': 54,
-                            'PIE': 0,
-                            'VIT': 93,
-                            'Percent': 0.08})
-        
+        for i, (key, val) in enumerate(self.database.items()):
+            val.pop('Type')
+            val.pop('iLVL')
+            val.update({'Name':key})
+            entry = {'Name':key}
+            entry.update(val)
+            self.choices.update({i:entry})
+
+        self.__call__(Food_ID)
+
     def __call__(self, Food_ID):
-        self.__dict__.update(self.options[Food_ID - 1])
+        self.reset()
+        self.__dict__.update(self.choices[Food_ID])
 
     def __repr__(self):
-        output = self.__dict__.copy()
-        output.pop('options')
-        for key, val in output.items():
-            print(f"{key} = {val}")
+        for key, val in self.__dict__.items():
+            if key == 'database' or key == 'choices' or key == 'null':
+                continue
+            print(f"{key}: {val}")
         return ''
 
-    def list(self):
-        print('Food options')
-        for i, option in enumerate(self.options ,start = 1):
-            print(f"{i}: {option['Name']}")
+    def reset(self):
+        self.__dict__.update(self.null)
 
+    def show(self):
+        for key, val in self.choices.items():
+            print(f"{key}: {val['Name']}")
 
-
-            
+if __name__ == '__main__':
+    main()
