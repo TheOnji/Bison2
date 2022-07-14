@@ -1,3 +1,5 @@
+_Debug = False
+
 from bs4 import BeautifulSoup as bfs
 import lxml
 import requests
@@ -9,24 +11,27 @@ import numpy as np
 
 #---------------Logger setup----------------#
 logger = logging.getLogger(__name__)
+logger.propagate = False
 
-file_handler = logging.FileHandler(f"Bison2.log")
-formatter = logging.Formatter('%(levelname)s:%(name)s:%(message)s')
-file_handler.setFormatter(formatter)
-stream_handler = logging.StreamHandler()
-stream_handler.setFormatter(formatter)
+if not logger.hasHandlers():
 
-#Levels
-#NOTSET, DEBUG, INFO, WARNING, ERROR, CRITICAL
-logger.setLevel(logging.DEBUG)
-file_handler.setLevel(logging.ERROR)
-stream_handler.setLevel(logging.DEBUG)
+    if _Debug == True:
+        loglevel = logging.DEBUG 
+    else:
+        loglevel = logging.ERROR
 
-logger.addHandler(file_handler)
-logger.addHandler(stream_handler)
+    logger.setLevel(loglevel)
+    formatter = logging.Formatter('%(levelname)s:%(name)s:%(message)s')
 
-#Disable all logging
-#logging.disable(logging.CRITICAL)
+    file_handler = logging.FileHandler(f"Bison2.log")
+    file_handler.setFormatter(formatter)
+    file_handler.setLevel(logging.ERROR)
+    logger.addHandler(file_handler)
+
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(formatter)
+    stream_handler.setLevel(loglevel)
+    logger.addHandler(stream_handler)
 #-----------Logger setup finished------------#
 
 
@@ -37,6 +42,7 @@ def main():
 
 
 def UpdateData(Gear = 600, Food = 580, Load_area = None, st_enable = True):
+    logger.debug('-> UpdateData function called')
 
     if st_enable:
         with Load_area:

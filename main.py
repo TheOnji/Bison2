@@ -5,6 +5,8 @@ External dependencies:  FFXIV lodestone database - data, formatting
 
 
 '''
+_Debug = False
+
 import numpy as np
 import json
 import itertools
@@ -20,22 +22,27 @@ import Interface
 
 #---------------Logger setup----------------#
 logger = logging.getLogger(__name__)
+logger.propagate = False
 
-file_handler = logging.FileHandler(f"Bison2.log")
-stream_handler = logging.StreamHandler()
+if not logger.hasHandlers():
 
-formatter = logging.Formatter('%(levelname)s:%(name)s:%(message)s')
-file_handler.setFormatter(formatter)
-stream_handler.setFormatter(formatter)
+    if _Debug == True:
+        loglevel = logging.DEBUG 
+    else:
+        loglevel = logging.ERROR
 
-#Levels
-#NOTSET, DEBUG, INFO, WARNING, ERROR, CRITICAL
-logger.setLevel(logging.DEBUG)
-file_handler.setLevel(logging.ERROR)
-stream_handler.setLevel(logging.INFO)
+    logger.setLevel(loglevel)
+    formatter = logging.Formatter('%(levelname)s:%(name)s:%(message)s')
 
-logger.addHandler(file_handler)
-logger.addHandler(stream_handler)
+    file_handler = logging.FileHandler(f"Bison2.log")
+    file_handler.setFormatter(formatter)
+    file_handler.setLevel(logging.ERROR)
+    logger.addHandler(file_handler)
+
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(formatter)
+    stream_handler.setLevel(loglevel)
+    logger.addHandler(stream_handler)
 
 #Disable all logging
 #logging.disable(logging.CRITICAL)
@@ -50,6 +57,41 @@ def main():
     if flags['Optimize'] == True:
         BISON(BISON_config, Load_area)
 
+
+def BISON(config, Load_area):
+    print(config)
+    logger.debug('-> Bison function called')
+    GearSet = Gear.Gearset(config['Job'][1])
+    Menu = Food.FoodMenu()
+
+    Gear_list = list(config['Gear'].values())
+    Gear_IDs = itertools.product(*Gear_list)
+
+    Food_list = list(config['Food'].values())
+    Food_IDs = [ID for ID, tick in enumerate(Food_list) if tick]
+
+    for Gear_ID in Gear_IDs:
+        GearSet(Gear_ID)
+
+        Materia_Allowance = [int(limit * tick) for limit, tick in zip(np.diagonal(GearSet.Materia_Matrix), config['Materia'].values())]
+        Materia_list = [list(range(int(limit) + 1)) for limit in Materia_Allowance]
+        Materia_IDs = itertools.product(*Materia_list)
+
+        k = [0, 0]
+        for Materia_ID in Materia_IDs:
+            k[0] += 1
+            if GearSet.Test_Materia(Materia_ID) == False:
+                continue
+            k[1] += 1
+
+            for Food_ID in Food_IDs:
+                Menu(Food_ID)
+
+        logger.debug(f"{k[1]} allowed sets of Materia ({k[0]} tested...)")
+                
+
+
+#---------------------------------#
 
 def BISON_DEMO(config, Load_area):
     print('Bison main')
@@ -66,12 +108,6 @@ def BISON_DEMO(config, Load_area):
         with Load_area:
             testbar.progress(int(next(i)))
             time.sleep(0.5)
-
-def BISON(config, Load_area):
-    print(config)
-
-    GearSet = Gear.GearSet(config['Job'])
-    Menu = Food.FoodMenu()
 
 
 if __name__ == '__main__':

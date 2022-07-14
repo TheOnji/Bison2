@@ -6,24 +6,25 @@ import logging
 import main
 from Interface_options import *
 import Gear
+import Food
 
 #---------------Logger setup----------------#
-logger = logging.getLogger(__name__)
+#logger = logging.getLogger(__name__)
 
-file_handler = logging.FileHandler(f"Bison2.log")
-formatter = logging.Formatter('%(levelname)s:%(name)s:%(message)s')
-file_handler.setFormatter(formatter)
-stream_handler = logging.StreamHandler()
-stream_handler.setFormatter(formatter)
+# file_handler = logging.FileHandler(f"Bison2.log")
+# formatter = logging.Formatter('%(levelname)s:%(name)s:%(message)s')
+# file_handler.setFormatter(formatter)
+# stream_handler = logging.StreamHandler()
+# stream_handler.setFormatter(formatter)
 
-#Levels
-#NOTSET, DEBUG, INFO, WARNING, ERROR, CRITICAL
-logger.setLevel(logging.DEBUG)
-file_handler.setLevel(logging.ERROR)
-stream_handler.setLevel(logging.DEBUG)
+# #Levels
+# #NOTSET, DEBUG, INFO, WARNING, ERROR, CRITICAL
+# logger.setLevel(logging.DEBUG)
+# file_handler.setLevel(logging.ERROR)
+# stream_handler.setLevel(logging.DEBUG)
 
-logger.addHandler(file_handler)
-logger.addHandler(stream_handler)
+# logger.addHandler(file_handler)
+# logger.addHandler(stream_handler)
 
 #Disable all logging
 #logging.disable(logging.CRITICAL)
@@ -158,31 +159,11 @@ def UpdateInterface():
                                 if g1:
                                     Gear_Choice[temp_key] += [subkey]
 
-#Old
-#        st.header('Gear pieces to test')
-#        c1, c2 = st.columns(2)
-#        Gear_type = Job_Gear[Job]
-#        Gear_options = All_gear_options[Gear_type]
-#        Gear = {}
-#        with c1:
-#            st.header('Body')
-#
-#            for key in ['Head', 'Chest', 'Hands', 'Legs', 'Feet']:
-#                st.subheader(key)
-#                g1 = st.checkbox(Gear_options[key][0])
-#                g2 = st.checkbox(Gear_options[key][1])
-#                Gear.update({key:[g1, g2]})
-#
-#        with c2:
-#            st.header('Accessories')
-#
-#            for key in ['Ear', 'Neck', 'Braclet', 'Ring1', 'Ring2']:
-#                st.subheader(key)
-#                g1 = st.checkbox(Gear_options[key][0])
-#                g2 = st.checkbox(Gear_options[key][1])
-#                Gear.update({key:[g1, g2]})
+            for key, val in Gear_Choice.items():
+                if len(val) < 1:
+                    Gear_Choice[key] = [0]
 
-    c1, c2 = st.columns([1, 1])
+    c1, c2, c3 = st.columns([1, 1, 1])
 
     with c1:
         st.header('Materia')
@@ -194,7 +175,17 @@ def UpdateInterface():
         TEN = st.checkbox('Tenacity')
         PIE = st.checkbox('Piety')
 
+
+    Menu = Food.FoodMenu()
+    Food_Choice = {}
+
     with c2:
+        st.header('Food')
+        for ID, Name in Menu.options().items():
+            tick = st.checkbox(Name)
+            Food_Choice.update({ID:tick})
+
+    with c3:
         st.header('GCD range')
         GCD_min, GCD_max = (1.50, 2.50)
         GCD_min = st.number_input('From', 1.50, 2.50, value = 2.40)
@@ -214,7 +205,8 @@ def UpdateInterface():
                     'Job':[Job_type, Job],
                     'Materia':{'CRT':CRT,'DET':DET,'DH': DH, 'SKS':SKS,'SPS':SPS,'TEN': TEN,'PIE':PIE},
                     'GCD':{'GCD_min':GCD_min, 'GCD_max':GCD_max},
-                    'Gear':Gear_Choice}
+                    'Gear':Gear_Choice,
+                    'Food':Food_Choice}
 
     flags = {'Update': _Update,
             'Optimize':_Optimize}

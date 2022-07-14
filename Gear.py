@@ -1,27 +1,32 @@
+_Debug = False
+
 import numpy as np
 import json
 import logging
 
 #---------------Logger setup----------------#
 logger = logging.getLogger(__name__)
+logger.propagate = False
 
-file_handler = logging.FileHandler(f"Bison2.log")
-formatter = logging.Formatter('%(levelname)s:%(name)s:%(message)s')
-file_handler.setFormatter(formatter)
-stream_handler = logging.StreamHandler()
-stream_handler.setFormatter(formatter)
+if not logger.hasHandlers():
 
-#Levels
-#NOTSET, DEBUG, INFO, WARNING, ERROR, CRITICAL
-logger.setLevel(logging.INFO)
-file_handler.setLevel(logging.ERROR)
-stream_handler.setLevel(logging.INFO)
+    if _Debug == True:
+        loglevel = logging.DEBUG 
+    else:
+        loglevel = logging.ERROR
 
-logger.addHandler(file_handler)
-logger.addHandler(stream_handler)
+    logger.setLevel(loglevel)
+    formatter = logging.Formatter('%(levelname)s:%(name)s:%(message)s')
 
-#Disable all logging
-#logging.disable(logging.CRITICAL)
+    file_handler = logging.FileHandler(f"Bison2.log")
+    file_handler.setFormatter(formatter)
+    file_handler.setLevel(logging.ERROR)
+    logger.addHandler(file_handler)
+
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(formatter)
+    stream_handler.setLevel(loglevel)
+    logger.addHandler(stream_handler)
 #-----------Logger setup finished------------#
 
 def main():
@@ -39,14 +44,16 @@ def main():
 class Gearset():
 
     def __init__(self, Job):
+        logger.debug('\n \n -> Gearset class called \n')
+
         self.null = {'Materia_Matrix':np.zeros([7, 7]),
-                    'AllowedMateria':[{},{},{},{},{},{},{},{},{},{},{}],
+                    'AllowedMateria':[{},{},{},{},{},{},{},{},{},{},{},{}],
                     'Materia_Sockets':0,
                     'iLVL':0,
                     'Strength':0,
-                    'Intelligence':0,
-                    'Mind':0,
                     'Dexterity':0,
+                    'Mind':0,
+                    'Intelligence':0,
                     'Vitality':0,
                     'Critical Hit':0,
                     'Determination':0,
@@ -81,10 +88,11 @@ class Gearset():
         self.__dict__.update(self.null)
 
     def __call__(self, Gear_ID):
-        Weapon, Head, Chest, Hands, Legs, Feet, Ear, Neck, Bracelet, Ring1, Ring2 = Gear_ID
-        self.ID = f"{Weapon}{Head}{Chest}{Hands}{Legs}{Feet}{Ear}{Neck}{Bracelet}{Ring1}{Ring2}"
+        Weapon, Shield, Head, Chest, Hands, Legs, Feet, Ear, Neck, Bracelet, Ring1, Ring2 = list(Gear_ID)
+        self.ID = f"{Weapon}{Shield}{Head}{Chest}{Hands}{Legs}{Feet}{Ear}{Neck}{Bracelet}{Ring1}{Ring2}"
 
         Choice = {'Weapon':Weapon, 
+                'Shield':Shield,
                 'Head':Head, 
                 'Body':Chest, 
                 'Hands':Hands, 
@@ -98,6 +106,9 @@ class Gearset():
 
         self.reset()
         for i, (Slot, ID) in enumerate(Choice.items()):
+            if ID == 0:
+                continue
+
             SaveSlot = Slot
             if 'Ring' in Slot:
                 Slot = 'Ring'
@@ -109,7 +120,7 @@ class Gearset():
             for stat, val in item.items():
                 setattr(self, stat, self.__dict__.get(stat, 0) + val)
 
-        self.iLVL = int(self.iLVL / 11)
+        self.iLVL = int(self.iLVL / 12)
                     
     def __repr__(self):
         for key, val in self.slots.items():
@@ -128,7 +139,11 @@ class Gearset():
 
 
         for key, val in info.items():
-            print(f"{key:15}: {val}")
+            if key == 'Materia_Matrix':
+                print(key)
+                print(val)
+            else:
+                print(f"{key:15}: {val}")
 
         return ''
 
@@ -155,7 +170,7 @@ class Gearset():
 
                 #Calculate materia matrix
                 Materia_value = 30
-                default_val = -1
+                default_val = 0
                 MatStats = {'Critical Hit':Entry.get('Critical Hit', default_val),
                             'Determination':Entry.get('Determination', default_val),
                             'Direct Hit':Entry.get('Direct Hit', default_val),
@@ -164,12 +179,11 @@ class Gearset():
                             'Tenacity':Entry.get('Tenacity', default_val),
                             'Piety':Entry.get('Piety', default_val)}
 
-                Stat_cap = max(MatStats.values())
-                for mkey, mval in MatStats.items():
-                    MatStats.update({mkey:min(int((Stat_cap - mval)/Materia_value), val['Materia_Sockets'])})
-                Entry.update({'AllowedMateria':MatStats})
-
                 if val['Materia_Sockets'] > 0:
+                    Stat_cap = max(MatStats.values())
+                    for mkey, mval in MatStats.items():
+                        MatStats.update({mkey:min(int((Stat_cap - mval)/Materia_value), val['Materia_Sockets'])})
+
                     A = np.ones([7, 7])
                     b = list(MatStats.values())
                     bA = b*A
@@ -180,6 +194,8 @@ class Gearset():
                     logger.debug(Materia_Matrix)
 
                     Entry.update({'Materia_Matrix':Materia_Matrix})
+
+                Entry.update({'AllowedMateria':MatStats})
 
 
                 try:
