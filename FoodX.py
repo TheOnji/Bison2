@@ -30,11 +30,10 @@ if not logger.hasHandlers():
 
 
 def main():
-    Menu = FoodMenu(1)
-    Menu
+    pass
 
 
-class FoodMenu():
+class Menu():
     logger.debug('\n Food menu created \n')
 
     def __init__(self, Food_ID = 1):

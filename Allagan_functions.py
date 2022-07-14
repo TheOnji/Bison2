@@ -1,16 +1,90 @@
+_Debug = False
+
 import math
+import logging
+
+#---------------Logger setup----------------#
+logger = logging.getLogger(__name__)
+logger.propagate = False
+
+if not logger.hasHandlers():
+
+    if _Debug == True:
+        loglevel = logging.DEBUG 
+    else:
+        loglevel = logging.ERROR
+
+    logger.setLevel(loglevel)
+    formatter = logging.Formatter('%(levelname)s:%(name)s:%(message)s')
+
+    file_handler = logging.FileHandler(f"Bison2.log")
+    file_handler.setFormatter(formatter)
+    file_handler.setLevel(logging.ERROR)
+    logger.addHandler(file_handler)
+
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(formatter)
+    stream_handler.setLevel(loglevel)
+    logger.addHandler(stream_handler)
+#-----------Logger setup finished------------#
+
+
+def main():
+    T = Equip()
+    print(T.fDET)
+
+    T(200)
+    print(T.fDET)
+
+def Speedtest(Character = 0, Gear = 0, Materia = 0, Food = 0, percentage = 0):
+    Equipment = Character + Gear + Materia
+    SkillSpeed = min( (1 + percentage)*Equipment, Equipment+Food ) 
+
+    k = 1900 / 130
+    mults_of_k = math.floor((SkillSpeed - 400) / k)
+
+    if mults_of_k < 1:
+        GCD = 2.50
+    elif mults_of_k == 1:
+        GCD = 2.50 - 0.01
+    elif mults_of_k > 1:
+        m = math.floor((mults_of_k - 1) / 4)
+        GCD = 2.49 - 0.01 * m
+
+    return round(GCD, 2)
+
+
+class Equipper():
+    def __init__(Character, Gear, Materia, Food):
+
+        #Level 90 properties
+        self.MAIN = 390
+        self.SUB = 400
+        self.DIV = 1900
+        self.HP = 3000
+
+        self.DET = 100
+
+    @property
+    def fDET(self):
+        print('property called')
+        return math.floor(140*(self.DET - self.MAIN) / self.DIV + 1000)
+
+    def __call__(self, Character, Gear, Materia, Food):
+        self.DET = det
+
+
+#---------------------------------------#
+
+
+
 
 def Damage(self, Potency):
     Damage = (((Potency * self.fDET * self.fAP) / 100) / 1000)
     return Damage
 
 
-def LevelLv(self):
-    MAIN = [202, 218, 292, 340, 390][[50, 60, 70, 80, 90].index(self.Character.Level)]
-    SUB = [341, 354, 364, 380, 400][[50, 60, 70, 80, 90].index(self.Character.Level)]
-    DIV = [341, 600, 900, 1300, 1900][[50, 60, 70, 80, 90].index(self.Character.Level)]
-    HP = [1700, None, None, 1300, 3000][[50, 60, 70, 80, 90].index(self.Character.Level)]
-    return MAIN, SUB, DIV, HP
+
 
 
 def JobModifier(self):
@@ -34,14 +108,6 @@ def JobModifier(self):
     return jobmod
 
 
-def fDetermination(self, DET = -1):
-    if DET < 0:
-        Determination = self.Determination
-    else:
-        Determination = DET
-
-    fDET = math.floor(140*(Determination - self.MAIN) / self.DIV + 1000)
-    return fDET
 
 
 def fCriticalHit(self, CRIT = -1):
@@ -242,3 +308,8 @@ def AutoAtk_Damage(self, Potency, buff_1 = 1.0, buff_2 = 1.0, CalcAverage = 1):
     D3 = math.floor(math.floor(math.floor(math.floor(D2 * modCRIT ) /1000 ) * modDH ) /100 )
     D = math.floor(math.floor(math.floor(math.floor(D3 * 100 ) /100 ) * buff_1 ) * buff_2 )
     return D
+
+
+
+if __name__ == '__main__':
+    main()

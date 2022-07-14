@@ -213,10 +213,6 @@ class Gearset():
                 print(f"    {subkey}: {subval['Name']}")
 
     def Test_Materia(self, MatList):
-
-        logger.debug('Materia_Matrix')
-        logger.debug(self.Materia_Matrix)
-        logger.debug(f"Materia_sockets: {self.Materia_Sockets:}, Given nr of Materia: {sum(MatList)}")
         Possible = False
 
         #Test 1 are all the slots filled?
@@ -231,10 +227,6 @@ class Gearset():
 
             T = self.Materia_Matrix - Test_Matrix
             T_bool = T[:, None] < 0
-
-            logger.debug('Diff Matrices and any call')    
-            logger.debug(T)
-            logger.debug(T[:,None] < 0)
 
             if not T_bool.any():
                 Possible = True

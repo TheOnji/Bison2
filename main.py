@@ -5,7 +5,7 @@ External dependencies:  FFXIV lodestone database - data, formatting
 
 
 '''
-_Debug = False
+_Debug = True
 
 import numpy as np
 import json
@@ -15,10 +15,12 @@ import streamlit as st
 import time
 
 #Import project files
-import Gear
-import Food
-import get_Geardata as getdb
+import GearX
+import MateriaX
+import FoodX
+import get_data
 import Interface
+import Allagan_functions
 
 #---------------Logger setup----------------#
 logger = logging.getLogger(__name__)
@@ -52,43 +54,56 @@ def main():
     BISON_config, flags, Load_area = Interface.UpdateInterface()
 
     if flags['Update'] == True:
-        getdb.UpdateData(600, 580, Load_area)
+        get_data.UpdateData(600, 580, Load_area)
 
     if flags['Optimize'] == True:
         BISON(BISON_config, Load_area)
 
 
 def BISON(config, Load_area):
-    print(config)
-    logger.debug('-> Bison function called')
-    GearSet = Gear.Gearset(config['Job'][1])
-    Menu = Food.FoodMenu()
+    logger.debug('-> Bison function called \n ')
 
+    #Create callable equipent objects
+    Gear = GearX.Gearset(config['Job'][1])
+    Food = FoodX.Menu()
+    Materia = MateriaX.Materia()
+
+    #Gear IDs to check
     Gear_list = list(config['Gear'].values())
     Gear_IDs = itertools.product(*Gear_list)
 
+    #Food IDs to check
     Food_list = list(config['Food'].values())
     Food_IDs = [ID for ID, tick in enumerate(Food_list) if tick]
 
     for Gear_ID in Gear_IDs:
-        GearSet(Gear_ID)
+        Gear(Gear_ID)
 
-        Materia_Allowance = [int(limit * tick) for limit, tick in zip(np.diagonal(GearSet.Materia_Matrix), config['Materia'].values())]
+        #Materia IDs to check
+        Materia_Allowance = [int(limit * tick) for limit, tick in zip(np.diagonal(Gear.Materia_Matrix), config['Materia'].values())]
         Materia_list = [list(range(int(limit) + 1)) for limit in Materia_Allowance]
         Materia_IDs = itertools.product(*Materia_list)
 
-        k = [0, 0]
         for Materia_ID in Materia_IDs:
-            k[0] += 1
-            if GearSet.Test_Materia(Materia_ID) == False:
+            if Gear.Test_Materia(Materia_ID) == False:
                 continue
-            k[1] += 1
+
+            Materia(Materia_ID)
 
             for Food_ID in Food_IDs:
-                Menu(Food_ID)
+                Food(Food_ID)
 
-        logger.debug(f"{k[1]} allowed sets of Materia ({k[0]} tested...)")
-                
+                GCD = Allagan_functions.Speedtest(0, 
+                                                getattr(Gear, 'Skill Speed'),
+                                                getattr(Materia, 'Skill Speed'),
+                                                getattr(Food, 'Skill Speed'),
+                                                getattr(Food, 'percentage'))
+                print(config['GCDs'])
+                if GCD in config['GCDs']:
+                    print(f"GCD: {GCD}")
+
+                    #Allagan_functions.Equipper(None, Gear, Materia, Food)
+    logger.debug('<- Bison function finished, returning to main')
 
 
 #---------------------------------#

@@ -2,11 +2,12 @@ import streamlit as st
 from PIL import Image
 import time
 import logging
+import numpy as np
 
 import main
 from Interface_options import *
-import Gear
-import Food
+import GearX
+import FoodX
 
 #---------------Logger setup----------------#
 #logger = logging.getLogger(__name__)
@@ -59,7 +60,7 @@ def UpdateInterface():
     st.info('How to use: \n 1. Configure race and job in the sidepanel. \n 2. Configure which gear and materia to analyze. \n 3. Select GCD range of interest. \n 4. Launch BiSON with the Optimize button. \n Less gear and materia options gives faster processing time.')
 
     #Load Gear object for selected job
-    Gear_Set = Gear.Gearset(Job)
+    Gear_Set = GearX.Gearset(Job)
     Gear_Choice = {}
 
     with st.container():
@@ -176,7 +177,7 @@ def UpdateInterface():
         PIE = st.checkbox('Piety')
 
 
-    Menu = Food.FoodMenu()
+    Menu = FoodX.Menu()
     Food_Choice = {}
 
     with c2:
@@ -187,9 +188,21 @@ def UpdateInterface():
 
     with c3:
         st.header('GCD range')
-        GCD_min, GCD_max = (1.50, 2.50)
-        GCD_min = st.number_input('From', 1.50, 2.50, value = 2.40)
-        GCD_max = st.number_input('To', 1.50, 2.50, value = 2.50)
+        m = st.checkbox('Select specific GCDs')
+
+        if m:
+            GCD_val = st.text_input('Type in GCDs separate by ";":')
+            enter = st.button('Enter')
+            if enter:
+                GCD_vals = GCD_val.split(';')
+                GCD_range = [float(s) for s in GCD_vals]
+                st.write(GCD_range)
+        else:
+            GCD_min, GCD_max = (1.50, 2.50)
+            GCD_min = st.number_input('From', 1.50, 2.50, value = 2.40)
+            GCD_max = st.number_input('To', 1.50, 2.50, value = 2.50)
+            GCD_range = list(range(int(GCD_min*100), int(GCD_max*100+1)))
+            GCD_range = [e/100 for e in GCD_range]
 
     _Optimize = st.button('Optimize!')
 
@@ -204,7 +217,7 @@ def UpdateInterface():
     BISON_config = {'Race':[Race_type, Race],
                     'Job':[Job_type, Job],
                     'Materia':{'CRT':CRT,'DET':DET,'DH': DH, 'SKS':SKS,'SPS':SPS,'TEN': TEN,'PIE':PIE},
-                    'GCD':{'GCD_min':GCD_min, 'GCD_max':GCD_max},
+                    'GCDs':GCD_range,
                     'Gear':Gear_Choice,
                     'Food':Food_Choice}
 
