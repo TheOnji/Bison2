@@ -1,3 +1,5 @@
+_Debug = False
+
 import streamlit as st
 from PIL import Image
 import time
@@ -10,27 +12,32 @@ import GearX
 import FoodX
 
 #---------------Logger setup----------------#
-#logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
+logger.propagate = False
 
-# file_handler = logging.FileHandler(f"Bison2.log")
-# formatter = logging.Formatter('%(levelname)s:%(name)s:%(message)s')
-# file_handler.setFormatter(formatter)
-# stream_handler = logging.StreamHandler()
-# stream_handler.setFormatter(formatter)
+if not logger.hasHandlers():
 
-# #Levels
-# #NOTSET, DEBUG, INFO, WARNING, ERROR, CRITICAL
-# logger.setLevel(logging.DEBUG)
-# file_handler.setLevel(logging.ERROR)
-# stream_handler.setLevel(logging.DEBUG)
+    if _Debug == True:
+        loglevel = logging.DEBUG 
+    else:
+        loglevel = logging.ERROR
 
-# logger.addHandler(file_handler)
-# logger.addHandler(stream_handler)
+    logger.setLevel(loglevel)
+    formatter = logging.Formatter('%(levelname)s:%(name)s:%(message)s')
+
+    file_handler = logging.FileHandler(f"Bison2.log")
+    file_handler.setFormatter(formatter)
+    file_handler.setLevel(logging.ERROR)
+    logger.addHandler(file_handler)
+
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(formatter)
+    stream_handler.setLevel(loglevel)
+    logger.addHandler(stream_handler)
 
 #Disable all logging
 #logging.disable(logging.CRITICAL)
 #-----------Logger setup finished------------#
-
 
 def UpdateInterface():
     #Page setting
@@ -100,7 +107,6 @@ def UpdateInterface():
                         #If gear is ticked update config file for BISON
                         if g1:
                             Gear_Choice[key] += [subkey]
-
 
     with st.container():
         c1, c2 = st.columns(2)
@@ -192,11 +198,13 @@ def UpdateInterface():
 
         if m:
             GCD_val = st.text_input('Type in GCDs separate by ";":')
-            enter = st.button('Enter')
-            if enter:
-                GCD_vals = GCD_val.split(';')
-                GCD_range = [float(s) for s in GCD_vals]
-                st.write(GCD_range)
+            if GCD_val == '':
+                GCD_val = [0]
+            else:
+                split = GCD_val.split(';')
+                GCD_val = [float(s) for s in split]
+            GCD_range = GCD_val
+            st.write(GCD_range)
         else:
             GCD_min, GCD_max = (1.50, 2.50)
             GCD_min = st.number_input('From', 1.50, 2.50, value = 2.40)
@@ -226,5 +234,3 @@ def UpdateInterface():
 
 
     return BISON_config, flags, Load_area
-
-
