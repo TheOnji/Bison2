@@ -54,9 +54,7 @@ if not logger.hasHandlers():
 #---------------------------------Main Function-------------------------------#
 
 def main():
-    if 'BIS_IDs' in locals():
-        print('yes')
-
+    
     BISON_config, flags, Load_area = Interface.UpdateInterface()
 
     if flags['Update'] == True:
