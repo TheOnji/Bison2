@@ -3,7 +3,11 @@ BISON 2
 External dependencies:  FFXIV lodestone database - data, formatting
                         Names of raid gear eg 'Asphodelos' 
 Test from windows pc
+<<<<<<< HEAD
 Conflict test LINUX
+=======
+Conflict test WINDOWS
+>>>>>>> refs/remotes/origin/master
 
 '''
 _Debug = True
