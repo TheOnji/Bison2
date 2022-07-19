@@ -1,0 +1,44 @@
+#MainMenu {visibility: hidden;}
+footer {visibiliry: hidden;}
+header {visibility: hidden;}
+
+div.css-ocqkz7.e1tzin5v4 {
+    background-color: #212F3D;
+    border: 1px solid #17202A;
+    padding:  20px 20px 20px 70px; */
+    padding: 5% 5% 5% 10%;
+    border-radius:  10px;
+}
+
+div.stNumberInput{
+    background-color: #BB2B9;
+    border: 1px solid #F7F9F9;
+    padding:  2px 2px 2px 5px; */
+    padding: 5% 5% 5% 8%;
+    border-radius:  5px;
+}
+
+div.row-widget.stButton {
+    text-align: center;
+}
+
+button.css-1wckoud.edgvbvh9 {
+    font-size: 30px;
+}
+
+div.css-183lzff.eyqtai90 {
+    text-align: center;
+}
+
+//*.reportview-container {
+    background: url('https://ashgar.com/tag/ffxiv/');
+}//*
+
+//*.sidebar .sidebar-content {
+    background: url();
+}//*
+
+
+
+
+

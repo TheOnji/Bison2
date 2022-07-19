@@ -3,6 +3,7 @@ BISON 2
 External dependencies:  FFXIV lodestone database - data, formatting
                         Names of raid gear eg 'Asphodelos' 
 Test from windows pc
+Conflict test LINUX
 
 '''
 _Debug = True
