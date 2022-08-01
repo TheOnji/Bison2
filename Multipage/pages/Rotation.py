@@ -3,19 +3,19 @@ _Debug = False
 import streamlit as st
 import json
 
-from Interface_options import *
-
-
-
 
 #Page setting
 st.set_page_config(page_title = "BISON 2.0",
 					page_icon = ":ox:",
 					layout = "wide")
 
-	#---Page setup---
-st.text(logo)
-st.text('---Advanced FFXIV best-in-slot optimizer---')
+#---Page setup---
+st.info("This is the rotation page")
+st.write("You selected: ")
+st.write(st.session_state["Check_selection"])
+
+st.write(st.session_state["num"])
+
 
 #Configuration sidebar
 with st.sidebar:

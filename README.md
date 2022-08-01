@@ -24,6 +24,7 @@ To do list:
     1. Equip() should be persistant in the loops to reduce memory usage (same as gear and food etc)
     2. DPS function needs to utilize JSON data instead of predefined functions.
 - Streamlit interface needs to use session_state to manage data between pages (multipage)
+- Select all button for main page in interface (via session state)
 
 Implemented features:
 - Single page streamlit interface
